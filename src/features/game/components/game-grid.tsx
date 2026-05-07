@@ -7,15 +7,15 @@ import { useState } from "react";
 
 type GameGridProps = {
   selectedGenre: Genres | null;
-  selectedPlatforms: Platform[];
+  selectedPlatform: Platform | null;
 };
 
-const GameGrid = ({ selectedGenre, selectedPlatforms = [] }: GameGridProps) => {
+const GameGrid = ({ selectedGenre, selectedPlatform }: GameGridProps) => {
   const {
     data: games,
     error,
     isLoading,
-  } = useGames(selectedGenre, selectedPlatforms);
+  } = useGames(selectedGenre, selectedPlatform);
 
   const [isExpanded, setIsExpanded] = useState(false);
 

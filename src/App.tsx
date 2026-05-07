@@ -8,14 +8,16 @@ import type { Platform } from "./features/platform/type";
 
 const App = () => {
   const [selectedGenre, setSelectedGenre] = useState<Genres | null>(null);
-  const [selectedPlatforms, setSelectedPlatforms] = useState<Platform[]>([]);
+  const [selectedPlatforms, setSelectedPlatforms] = useState<Platform | null>(
+    null,
+  );
 
   const handleSelectedGenre = (genre: Genres | null) => {
     setSelectedGenre(genre);
   };
 
-  const handleSelectedPlatforms = (platforms: Platform[]) => {
-    setSelectedPlatforms(platforms);
+  const handleSelectedPlatforms = (platform: Platform | null) => {
+    setSelectedPlatforms(platform);
   };
 
   return (
@@ -32,13 +34,13 @@ const App = () => {
         <div className="flex-1 flex flex-col">
           <div className="p-2">
             <PlatformDropdown
-              selectedPlatforms={selectedPlatforms}
+              selectedPlatform={selectedPlatforms}
               onPlatformSelect={handleSelectedPlatforms}
             />
           </div>
           <GameGrid
             selectedGenre={selectedGenre}
-            selectedPlatforms={selectedPlatforms}
+            selectedPlatform={selectedPlatforms}
           />
         </div>
       </main>

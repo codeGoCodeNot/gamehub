@@ -13,33 +13,21 @@ import type { Platform } from "../type";
 import { useState } from "react";
 
 type PlatformDropdownProps = {
-  onPlatformSelect: (platforms: Platform[]) => void;
-  selectedPlatforms: Platform[];
+  onPlatformSelect: (platform: Platform | null) => void;
+  selectedPlatform: Platform | null;
 };
 
 const PlatformDropdown = ({
   onPlatformSelect,
-  selectedPlatforms,
+  selectedPlatform,
 }: PlatformDropdownProps) => {
   const { data: platforms, error } = usePlatform();
-
-  const togglePlatform = (platform: Platform) => {
-    const isSelected = selectedPlatforms.some((p) => p.id === platform.id);
-    if (isSelected) {
-      onPlatformSelect(selectedPlatforms.filter((p) => p.id !== platform.id));
-    } else {
-      onPlatformSelect([...selectedPlatforms, platform]);
-    }
-  };
-
   const [isExpanded, setIsExpanded] = useState(false);
 
   const displayedPlatforms = isExpanded ? platforms : platforms?.slice(0, 10);
 
-  const handleToggle = (e: React.MouseEvent, platform: Platform) => {
-    e.preventDefault();
-    e.stopPropagation();
-    togglePlatform(platform);
+  const handleSelectPlatform = (platform: Platform) => {
+    onPlatformSelect(platform);
   };
 
   if (error) return <p>Error loading platforms: {error}</p>;
@@ -48,7 +36,8 @@ const PlatformDropdown = ({
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="outline">
-          Platforms <LucideArrowDown />
+          {selectedPlatform ? selectedPlatform.name : "Platforms"}
+          <LucideArrowDown className="ml-2 h-4 w-4" />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
@@ -56,9 +45,9 @@ const PlatformDropdown = ({
           {displayedPlatforms?.map((platform) => (
             <DropdownMenuItem
               key={platform.id}
-              onClick={(e) => handleToggle(e, platform)}
+              onClick={() => handleSelectPlatform(platform)}
               className={
-                selectedPlatforms.some((p) => p.id === platform.id)
+                selectedPlatform?.id === platform.id
                   ? "bg-blue-50 dark:bg-blue-950"
                   : ""
               }
