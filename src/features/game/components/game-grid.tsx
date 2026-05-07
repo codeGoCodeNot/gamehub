@@ -6,9 +6,9 @@ const GameGrid = () => {
 
   return (
     <div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4 mx-auto max-w-6xl">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 gap-4 p-4 mx-auto w-full">
         {isLoading &&
-          Array.from({ length: 9 }).map((_, index) => (
+          Array.from({ length: 20 }).map((_, index) => (
             <GameCardSkeleton key={index} />
           ))}
         {error && <p className="text-red-500">{error}</p>}
