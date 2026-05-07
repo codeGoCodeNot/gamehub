@@ -17,7 +17,10 @@ const App = () => {
       <main className="flex flex-1 mt-[60px]">
         <aside className="hidden lg:block w-64 border-r border-border bg-background/50 p-6 overflow-y-auto">
           <h2 className="text-lg font-semibold mb-4">Genres</h2>
-          <GenreList onGenreSelect={handleSelectedGenre} />
+          <GenreList
+            onGenreSelect={handleSelectedGenre}
+            selectedGenre={selectedGenre}
+          />
         </aside>
         <div className="flex-1">
           <GameGrid selectedGenre={selectedGenre} />

@@ -5,9 +5,10 @@ import type { Genres } from "../type";
 
 type GenreListProps = {
   onGenreSelect: (genre: Genres | null) => void;
+  selectedGenre: Genres | null;
 };
 
-const GenreList = ({ onGenreSelect }: GenreListProps) => {
+const GenreList = ({ onGenreSelect, selectedGenre }: GenreListProps) => {
   const { data: genres, isLoading, error } = useGenres();
 
   if (isLoading) return <GenreListSkeleton />;
@@ -18,7 +19,11 @@ const GenreList = ({ onGenreSelect }: GenreListProps) => {
       {genres?.map((genre) => (
         <button
           key={genre.id}
-          className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors cursor-pointer"
+          className={`flex items-center gap-3 p-2 rounded-lg transition-colors cursor-pointer ${
+            selectedGenre?.id === genre.id
+              ? "bg-blue-50 dark:bg-blue-950"
+              : "hover:bg-gray-100 dark:hover:bg-gray-800"
+          }`}
           onClick={() => onGenreSelect(genre)}
         >
           <img
