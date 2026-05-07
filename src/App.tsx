@@ -5,12 +5,14 @@ import GenreList from "./features/genre/components/genre-list";
 import type { Genres } from "./features/genre/type";
 import PlatformList from "./features/platform/components/platform-list";
 import type { Platform } from "./features/platform/type";
-import type { GameQuery } from "./types/query";
+import type { GameQuery, SortOrder } from "./types/query";
+import SortSelector from "./components/sort-selector";
 
 const App = () => {
   const [gameQuery, setGameQuery] = useState<GameQuery>({
     genre: null,
     platform: null,
+    sortOrder: "",
   });
 
   const handleSelectedGenre = (genre: Genres | null) => {
@@ -19,6 +21,10 @@ const App = () => {
 
   const handleSelectedPlatforms = (platform: Platform | null) => {
     setGameQuery((prev) => ({ ...prev, platform }));
+  };
+
+  const handleSelectedSortOrder = (sortOrder: SortOrder | null) => {
+    setGameQuery((prev) => ({ ...prev, sortOrder }));
   };
 
   return (
@@ -33,10 +39,14 @@ const App = () => {
           />
         </aside>
         <div className="flex-1 flex flex-col">
-          <div className="p-2">
+          <div className="p-2 flex gap-x-2 items-center">
             <PlatformList
               selectedPlatform={gameQuery.platform}
               onPlatformSelect={handleSelectedPlatforms}
+            />
+            <SortSelector
+              onSelectSortOrder={handleSelectedSortOrder}
+              selectedSortOrder={gameQuery.sortOrder}
             />
           </div>
           <GameGrid gameQuery={gameQuery} />

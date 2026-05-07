@@ -24,13 +24,13 @@ const GameCard = ({ game }: GameCardProps) => {
         <CardTitle className="text-xl font-semibold">{name}</CardTitle>
         <div className="flex justify-between items-center">
           <GamePlatformIconList
-            platforms={parent_platforms.map(({ platform }) => platform)}
+            platforms={(parent_platforms ?? []).map(({ platform }) => platform)}
           />
           <Badge
             variant="destructive"
-            className={`${metacritic >= 75 ? "text-green-400" : metacritic >= 50 ? "text-yellow-400" : "text-red-600"} text-sm`}
+            className={`${(metacritic ?? 0) >= 75 ? "text-green-400" : (metacritic ?? 0) >= 50 ? "text-yellow-400" : "text-red-600"} text-sm`}
           >
-            {metacritic}
+            {metacritic ?? "N/A"}
           </Badge>
         </div>
       </CardHeader>

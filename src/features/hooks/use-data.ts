@@ -15,13 +15,13 @@ const useData = <T>(endpoint: string, requestConfig?: AxiosRequestConfig) => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    const control = new AbortController();
+    const controller = new AbortController();
 
     setIsLoading(true);
     apiClient
       .get<FetchResponse<T>>(endpoint, {
         ...requestConfig,
-        signal: control.signal,
+        signal: controller.signal,
       })
       .then((res) => {
         setData(res.data.results);
@@ -32,6 +32,8 @@ const useData = <T>(endpoint: string, requestConfig?: AxiosRequestConfig) => {
         setError((err as AxiosError).message);
         setIsLoading(false);
       });
+
+    return () => controller.abort();
   }, [endpoint, requestConfig]);
 
   return { data, error, isLoading };
