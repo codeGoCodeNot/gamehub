@@ -10,9 +10,15 @@ const useGames = (gameQuery: GameQuery) => {
     if (gameQuery.genre) params.genres = gameQuery.genre.id.toString();
     if (gameQuery.platform) params.platforms = gameQuery.platform.id.toString();
     if (gameQuery.sortOrder) params.ordering = gameQuery.sortOrder;
+    if (gameQuery.searchTerm) params.search = gameQuery.searchTerm;
 
     return Object.keys(params).length ? { params } : undefined;
-  }, [gameQuery.genre?.id, gameQuery.platform?.id, gameQuery.sortOrder]);
+  }, [
+    gameQuery.genre?.id,
+    gameQuery.platform?.id,
+    gameQuery.sortOrder,
+    gameQuery.searchTerm,
+  ]);
 
   return useData<Game>("/games", requestConfig);
 };

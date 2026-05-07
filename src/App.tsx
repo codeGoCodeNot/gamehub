@@ -13,7 +13,12 @@ const App = () => {
     genre: null,
     platform: null,
     sortOrder: "",
+    searchTerm: "",
   });
+
+  const handleSearch = (searchTerm: string) => {
+    setGameQuery((prev) => ({ ...prev, searchTerm }));
+  };
 
   const handleSelectedGenre = (genre: Genres | null) => {
     setGameQuery((prev) => ({ ...prev, genre }));
@@ -29,7 +34,7 @@ const App = () => {
 
   return (
     <div className="flex flex-col min-h-screen w-full">
-      <Navbar />
+      <Navbar onSearch={handleSearch} />
       <main className="flex flex-1 mt-[60px]">
         <aside className="hidden lg:block w-64 border-r border-border bg-background/50 p-6 overflow-y-auto">
           <h2 className="text-lg font-semibold mb-4">Genres</h2>
