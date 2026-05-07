@@ -1,5 +1,6 @@
 import apiClient from "@/services/api-client";
 import type { AxiosError } from "axios";
+import axios from "axios";
 import { useEffect, useState } from "react";
 
 type Game = {
@@ -18,15 +19,16 @@ const GameGrid = () => {
   const [games, setGames] = useState<Game[]>([]);
   const [error, setError] = useState("");
 
-  console.log(games);
-
   useEffect(() => {
     const control = new AbortController();
 
     apiClient
       .get<GamesResponse>("/games", { signal: control.signal })
       .then((res) => setGames(res.data.results))
-      .catch((err) => setError((err as AxiosError).message));
+      .catch((err) => {
+        if (axios.isCancel(err)) return;
+        setError((err as AxiosError).message);
+      });
 
     return () => control.abort();
   }, []);
