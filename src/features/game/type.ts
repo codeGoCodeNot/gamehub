@@ -15,7 +15,7 @@ export type Game = {
     platform: Platform;
   }>;
   released: string;
-  metacritic?: number;
+  metacritic: number;
   reviews_count: number;
   updated: string;
 };
