@@ -1,5 +1,5 @@
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
-import type { Game } from "@/features/type";
+import type { Game } from "@/features/game/type";
 import GamePlatformIconList from "./game-platform-icon-list";
 
 type GameCardProps = {
