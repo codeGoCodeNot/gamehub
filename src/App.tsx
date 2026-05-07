@@ -3,12 +3,19 @@ import Navbar from "./components/navbar/components/navbar";
 import GameGrid from "./features/game/components/game-grid";
 import GenreList from "./features/genre/components/genre-list";
 import type { Genres } from "./features/genre/type";
+import PlatformDropdown from "./features/platform/components/platform-dropdown";
+import type { Platform } from "./features/platform/type";
 
 const App = () => {
   const [selectedGenre, setSelectedGenre] = useState<Genres | null>(null);
+  const [selectedPlatforms, setSelectedPlatforms] = useState<Platform[]>([]);
 
   const handleSelectedGenre = (genre: Genres | null) => {
     setSelectedGenre(genre);
+  };
+
+  const handleSelectedPlatforms = (platforms: Platform[]) => {
+    setSelectedPlatforms(platforms);
   };
 
   return (
@@ -22,8 +29,17 @@ const App = () => {
             selectedGenre={selectedGenre}
           />
         </aside>
-        <div className="flex-1">
-          <GameGrid selectedGenre={selectedGenre} />
+        <div className="flex-1 flex flex-col">
+          <div className="p-2">
+            <PlatformDropdown
+              selectedPlatforms={selectedPlatforms}
+              onPlatformSelect={handleSelectedPlatforms}
+            />
+          </div>
+          <GameGrid
+            selectedGenre={selectedGenre}
+            selectedPlatforms={selectedPlatforms}
+          />
         </div>
       </main>
     </div>

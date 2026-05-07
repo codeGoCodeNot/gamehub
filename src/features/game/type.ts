@@ -1,10 +1,5 @@
 import type { Genres } from "../genre/type";
-
-export type Platform = {
-  id: number;
-  name: string;
-  slug: string;
-};
+import type { Platform } from "../platform/type";
 
 export type Game = {
   id: number;
