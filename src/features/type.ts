@@ -1,3 +1,9 @@
+export type Platform = {
+  id: number;
+  name: string;
+  slug: string;
+};
+
 export type Game = {
   id: number;
   name: string;
@@ -5,6 +11,9 @@ export type Game = {
   background_image: string; // ← This one!
   rating: number;
   rating_top: number;
+  parent_platforms: Array<{
+    platform: Platform;
+  }>;
   released: string;
   metacritic?: number;
   reviews_count: number;
