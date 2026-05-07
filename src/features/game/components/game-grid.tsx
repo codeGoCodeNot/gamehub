@@ -1,4 +1,4 @@
-import useGames from "@/features/hooks/use-games";
+import useGames from "../hooks/use-games";
 import GameCard from "./game-card";
 const GameGrid = () => {
   const { games, error } = useGames();
