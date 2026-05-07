@@ -2,6 +2,7 @@ import getCroppedImageUrl from "@/services/image-url";
 import useGenres from "../hooks/use-genres";
 import GenreListSkeleton from "./genre-skeleton";
 import type { Genres } from "../type";
+import { useState } from "react";
 
 type GenreListProps = {
   onGenreSelect: (genre: Genres | null) => void;
@@ -10,13 +11,16 @@ type GenreListProps = {
 
 const GenreList = ({ onGenreSelect, selectedGenre }: GenreListProps) => {
   const { data: genres, isLoading, error } = useGenres();
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const displayedGenres = isExpanded ? genres : genres?.slice(0, 7);
 
   if (isLoading) return <GenreListSkeleton />;
   if (error) return <p className="text-red-500">{error}</p>;
 
   return (
     <div className="flex flex-col gap-y-1">
-      {genres?.map((genre) => (
+      {displayedGenres?.map((genre) => (
         <button
           key={genre.id}
           className={`flex items-center gap-3 p-2 rounded-lg transition-colors cursor-pointer ${
@@ -34,6 +38,15 @@ const GenreList = ({ onGenreSelect, selectedGenre }: GenreListProps) => {
           <span className="text-sm font-medium">{genre.name}</span>
         </button>
       ))}
+
+      {genres && genres.length > 7 && (
+        <button
+          onClick={() => setIsExpanded(!isExpanded)}
+          className="text-sm text-blue-600 dark:text-blue-400 hover:underline mt-2 py-2"
+        >
+          {isExpanded ? "Show less" : "Show more"}
+        </button>
+      )}
     </div>
   );
 };

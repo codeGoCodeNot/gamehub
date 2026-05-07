@@ -10,6 +10,7 @@ import {
 import { LucideArrowDown } from "lucide-react";
 import usePlatform from "../hooks/use-platform";
 import type { Platform } from "../type";
+import { useState } from "react";
 
 type PlatformDropdownProps = {
   onPlatformSelect: (platforms: Platform[]) => void;
@@ -31,6 +32,10 @@ const PlatformDropdown = ({
     }
   };
 
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const displayedPlatforms = isExpanded ? platforms : platforms?.slice(0, 10);
+
   const handleToggle = (e: React.MouseEvent, platform: Platform) => {
     e.preventDefault();
     e.stopPropagation();
@@ -48,7 +53,7 @@ const PlatformDropdown = ({
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuGroup>
-          {platforms?.map((platform) => (
+          {displayedPlatforms?.map((platform) => (
             <DropdownMenuItem
               key={platform.id}
               onClick={(e) => handleToggle(e, platform)}
@@ -62,6 +67,16 @@ const PlatformDropdown = ({
             </DropdownMenuItem>
           ))}
         </DropdownMenuGroup>
+        {platforms && platforms.length > 10 && (
+          <div className="flex justify-center mt-2">
+            <button
+              onClick={() => setIsExpanded(!isExpanded)}
+              className={`text-sm text-blue-600 dark:text-blue-400 hover:underline ${isExpanded ? "mb-2" : "mt-2"}`}
+            >
+              {isExpanded ? "Show less" : "Show more"}
+            </button>
+          </div>
+        )}
       </DropdownMenuContent>
     </DropdownMenu>
   );
