@@ -1,9 +1,8 @@
-import useData from "@/features/hooks/use-data";
+import useGames from "../hooks/use-games";
 import GameCard from "./game-card";
 import GameCardSkeleton from "./game-card-skeleton";
-import type { Game } from "../type";
 const GameGrid = () => {
-  const { data: games, error, isLoading } = useData<Game>("/games");
+  const { data: games, error, isLoading } = useGames();
 
   return (
     <div>
