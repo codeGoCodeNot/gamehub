@@ -1,8 +1,9 @@
-import useGames from "../hooks/use-games";
+import useData from "@/features/hooks/use-data";
 import GameCard from "./game-card";
 import GameCardSkeleton from "./game-card-skeleton";
+import type { Game } from "../type";
 const GameGrid = () => {
-  const { games, error, isLoading } = useGames();
+  const { data: games, error, isLoading } = useData<Game>("/games");
 
   return (
     <div>
@@ -12,7 +13,7 @@ const GameGrid = () => {
             <GameCardSkeleton key={index} />
           ))}
         {error && <p className="text-red-500">{error}</p>}
-        {games.map((game) => (
+        {games?.map((game) => (
           <GameCard key={game.id} game={game} />
         ))}
       </div>

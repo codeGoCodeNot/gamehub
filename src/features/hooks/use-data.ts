@@ -1,18 +1,16 @@
 import apiClient from "@/services/api-client";
-import type { AxiosError } from "axios";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useEffect, useState } from "react";
-import type { Game } from "../type";
 
-type GamesResponse = {
+type FetchResponse<T> = {
   count: number;
   next: string | null;
   previous: string | null;
-  results: Game[];
+  results: T[];
 };
 
-const useGames = () => {
-  const [games, setGames] = useState<Game[]>([]);
+const useData = <T>(endpoint: string) => {
+  const [data, setData] = useState<T[]>();
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -21,9 +19,9 @@ const useGames = () => {
 
     setIsLoading(true);
     apiClient
-      .get<GamesResponse>("/games", { signal: control.signal })
+      .get<FetchResponse<T>>(endpoint, { signal: control.signal })
       .then((res) => {
-        setGames(res.data.results);
+        setData(res.data.results);
         setIsLoading(false);
       })
       .catch((err) => {
@@ -31,11 +29,9 @@ const useGames = () => {
         setError((err as AxiosError).message);
         setIsLoading(false);
       });
-
-    return () => control.abort();
   }, []);
 
-  return { games, error, isLoading };
+  return { data, error, isLoading };
 };
 
-export default useGames;
+export default useData;
