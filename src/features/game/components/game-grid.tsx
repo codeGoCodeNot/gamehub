@@ -1,8 +1,14 @@
+import type { Genres } from "@/features/genre/type";
 import useGames from "../hooks/use-games";
 import GameCard from "./game-card";
 import GameCardSkeleton from "./game-card-skeleton";
-const GameGrid = () => {
-  const { data: games, error, isLoading } = useGames();
+
+type GameGridProps = {
+  selectedGenre: Genres | null;
+};
+
+const GameGrid = ({ selectedGenre }: GameGridProps) => {
+  const { data: games, error, isLoading } = useGames(selectedGenre);
 
   return (
     <div>
