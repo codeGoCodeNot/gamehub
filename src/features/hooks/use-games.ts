@@ -2,11 +2,7 @@ import apiClient from "@/services/api-client";
 import type { AxiosError } from "axios";
 import axios from "axios";
 import { useEffect, useState } from "react";
-
-type Game = {
-  id: number;
-  name: string;
-};
+import type { Game } from "../type";
 
 type GamesResponse = {
   count: number;

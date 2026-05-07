@@ -27,12 +27,10 @@ const ThemeToggle = () => {
             <LucideSunMedium /> Light
           </DropdownMenuItem>
 
-          <DropdownMenuSeparator />
           <DropdownMenuItem onClick={() => setTheme("dark")}>
             <LucideMoon /> Dark
           </DropdownMenuItem>
 
-          <DropdownMenuSeparator />
           <DropdownMenuItem onClick={() => setTheme("system")}>
             <LucideMonitor /> System
           </DropdownMenuItem>

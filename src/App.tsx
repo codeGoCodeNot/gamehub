@@ -1,5 +1,5 @@
 import Navbar from "./components/navbar/components/navbar";
-import GameGrid from "./features/game/game-grid";
+import GameGrid from "./features/game/components/game-grid";
 
 const App = () => {
   return (
