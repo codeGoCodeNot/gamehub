@@ -3,7 +3,7 @@ import Navbar from "./components/navbar/components/navbar";
 import GameGrid from "./features/game/components/game-grid";
 import GenreList from "./features/genre/components/genre-list";
 import type { Genres } from "./features/genre/type";
-import PlatformDropdown from "./features/platform/components/platform-dropdown";
+import PlatformList from "./features/platform/components/platform";
 import type { Platform } from "./features/platform/type";
 
 const App = () => {
@@ -33,7 +33,7 @@ const App = () => {
         </aside>
         <div className="flex-1 flex flex-col">
           <div className="p-2">
-            <PlatformDropdown
+            <PlatformList
               selectedPlatform={selectedPlatforms}
               onPlatformSelect={handleSelectedPlatforms}
             />

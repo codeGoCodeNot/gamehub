@@ -6,31 +6,29 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-
 import { LucideArrowDown } from "lucide-react";
-import usePlatform from "../hooks/use-platform";
 import type { Platform } from "../type";
-import { useState } from "react";
 
 type PlatformDropdownProps = {
-  onPlatformSelect: (platform: Platform | null) => void;
+  platforms: Platform[] | undefined;
+  onIsExpanded: (isExpanded: boolean) => void;
   selectedPlatform: Platform | null;
+  isExpanded: boolean;
+  onPlatformSelect: (platform: Platform | null) => void;
 };
 
 const PlatformDropdown = ({
-  onPlatformSelect,
+  platforms,
+  onIsExpanded,
   selectedPlatform,
+  isExpanded,
+  onPlatformSelect,
 }: PlatformDropdownProps) => {
-  const { data: platforms, error } = usePlatform();
-  const [isExpanded, setIsExpanded] = useState(false);
-
   const displayedPlatforms = isExpanded ? platforms : platforms?.slice(0, 10);
 
   const handleSelectPlatform = (platform: Platform) => {
     onPlatformSelect(platform);
   };
-
-  if (error) return <p>Error loading platforms: {error}</p>;
 
   return (
     <DropdownMenu>
@@ -47,7 +45,7 @@ const PlatformDropdown = ({
               key={platform.id}
               onClick={() => handleSelectPlatform(platform)}
               className={
-                selectedPlatform?.id === platform.id
+                selectedPlatform?.id === platform.id /* ✅ Fixed */
                   ? "bg-blue-50 dark:bg-blue-950"
                   : ""
               }
@@ -59,7 +57,7 @@ const PlatformDropdown = ({
         {platforms && platforms.length > 10 && (
           <div className="flex justify-center mt-2">
             <button
-              onClick={() => setIsExpanded(!isExpanded)}
+              onClick={() => onIsExpanded(!isExpanded)}
               className={`text-sm text-blue-600 dark:text-blue-400 hover:underline ${isExpanded ? "mb-2" : "mt-2"}`}
             >
               {isExpanded ? "Show less" : "Show more"}
