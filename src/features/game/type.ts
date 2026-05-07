@@ -1,3 +1,5 @@
+import type { Genres } from "../genre/type";
+
 export type Platform = {
   id: number;
   name: string;
@@ -18,4 +20,5 @@ export type Game = {
   metacritic: number;
   reviews_count: number;
   updated: string;
+  genres: Genres[];
 };
