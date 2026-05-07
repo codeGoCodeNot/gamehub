@@ -1,5 +1,5 @@
 import ThemeToggle from "@/components/theme/theme-toggle";
-import gameIcon from "../../../assets/game-icon.png";
+import gameIcon from "@/assets/game-icon.png";
 
 const Navbar = () => {
   return (

@@ -1,23 +1,24 @@
 import { useState } from "react";
-import Navbar from "./components/navbar/components/navbar";
+import Navbar from "./components/navbar";
 import GameGrid from "./features/game/components/game-grid";
 import GenreList from "./features/genre/components/genre-list";
 import type { Genres } from "./features/genre/type";
-import PlatformList from "./features/platform/components/platform";
+import PlatformList from "./features/platform/components/platform-list";
 import type { Platform } from "./features/platform/type";
+import type { GameQuery } from "./types/query";
 
 const App = () => {
-  const [selectedGenre, setSelectedGenre] = useState<Genres | null>(null);
-  const [selectedPlatforms, setSelectedPlatforms] = useState<Platform | null>(
-    null,
-  );
+  const [gameQuery, setGameQuery] = useState<GameQuery>({
+    genre: null,
+    platform: null,
+  });
 
   const handleSelectedGenre = (genre: Genres | null) => {
-    setSelectedGenre(genre);
+    setGameQuery((prev) => ({ ...prev, genre }));
   };
 
   const handleSelectedPlatforms = (platform: Platform | null) => {
-    setSelectedPlatforms(platform);
+    setGameQuery((prev) => ({ ...prev, platform }));
   };
 
   return (
@@ -28,20 +29,17 @@ const App = () => {
           <h2 className="text-lg font-semibold mb-4">Genres</h2>
           <GenreList
             onGenreSelect={handleSelectedGenre}
-            selectedGenre={selectedGenre}
+            selectedGenre={gameQuery.genre}
           />
         </aside>
         <div className="flex-1 flex flex-col">
           <div className="p-2">
             <PlatformList
-              selectedPlatform={selectedPlatforms}
+              selectedPlatform={gameQuery.platform}
               onPlatformSelect={handleSelectedPlatforms}
             />
           </div>
-          <GameGrid
-            selectedGenre={selectedGenre}
-            selectedPlatform={selectedPlatforms}
-          />
+          <GameGrid gameQuery={gameQuery} />
         </div>
       </main>
     </div>

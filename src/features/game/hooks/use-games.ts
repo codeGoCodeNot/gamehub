@@ -1,21 +1,17 @@
 import useData from "@/features/hooks/use-data";
-import type { Game } from "../type";
-import type { Genres } from "@/features/genre/type";
-import type { Platform } from "@/features/platform/type";
+import type { GameQuery } from "@/types/query";
 import { useMemo } from "react";
+import type { Game } from "../type";
 
-const useGames = (
-  selectedGenre: Genres | null,
-  selectedPlatform: Platform | null,
-) => {
+const useGames = (gameQuery: GameQuery) => {
   const requestConfig = useMemo(() => {
     const params: Record<string, string> = {};
 
-    if (selectedGenre) params.genres = selectedGenre.id.toString();
-    if (selectedPlatform) params.platforms = selectedPlatform.id.toString();
+    if (gameQuery.genre) params.genres = gameQuery.genre.id.toString();
+    if (gameQuery.platform) params.platforms = gameQuery.platform.id.toString();
 
     return Object.keys(params).length ? { params } : undefined;
-  }, [selectedGenre?.id, selectedPlatform?.id]);
+  }, [gameQuery]);
 
   return useData<Game>("/games", requestConfig);
 };

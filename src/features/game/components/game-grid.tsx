@@ -1,21 +1,15 @@
-import type { Genres } from "@/features/genre/type";
+import type { GameQuery } from "@/types/query";
+import { useState } from "react";
 import useGames from "../hooks/use-games";
 import GameCard from "./game-card";
 import GameCardSkeleton from "./game-card-skeleton";
-import type { Platform } from "@/features/platform/type";
-import { useState } from "react";
 
 type GameGridProps = {
-  selectedGenre: Genres | null;
-  selectedPlatform: Platform | null;
+  gameQuery: GameQuery;
 };
 
-const GameGrid = ({ selectedGenre, selectedPlatform }: GameGridProps) => {
-  const {
-    data: games,
-    error,
-    isLoading,
-  } = useGames(selectedGenre, selectedPlatform);
+const GameGrid = ({ gameQuery }: GameGridProps) => {
+  const { data: games, error, isLoading } = useGames(gameQuery);
 
   const [isExpanded, setIsExpanded] = useState(false);
 
