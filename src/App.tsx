@@ -7,6 +7,7 @@ import PlatformList from "./features/platform/components/platform-list";
 import type { Platform } from "./features/platform/type";
 import type { GameQuery, SortOrder } from "./types/query";
 import SortSelector from "./components/sort-selector";
+import getHeadingTitle from "./utils/get-heading-title";
 
 const App = () => {
   const [gameQuery, setGameQuery] = useState<GameQuery>({
@@ -54,7 +55,10 @@ const App = () => {
               selectedSortOrder={gameQuery.sortOrder}
             />
           </div>
-          <GameGrid gameQuery={gameQuery} />
+          <GameGrid
+            gameQuery={gameQuery}
+            headingTitle={getHeadingTitle(gameQuery)}
+          />
         </div>
       </main>
     </div>
