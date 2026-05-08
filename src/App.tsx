@@ -22,11 +22,17 @@ const App = () => {
   };
 
   const handleSelectedGenre = (genre: Genres | null) => {
-    setGameQuery((prev) => ({ ...prev, genre }));
+    setGameQuery((prev) => ({
+      ...prev,
+      genre: prev.genre?.id === genre?.id ? null : genre,
+    }));
   };
 
   const handleSelectedPlatforms = (platform: Platform | null) => {
-    setGameQuery((prev) => ({ ...prev, platform }));
+    setGameQuery((prev) => ({
+      ...prev,
+      platform: prev.platform?.id === platform?.id ? null : platform,
+    }));
   };
 
   const handleSelectedSortOrder = (sortOrder: SortOrder | null) => {
