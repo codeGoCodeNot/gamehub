@@ -3,10 +3,8 @@ import Navbar from "./components/layout/navbar";
 import GameGrid from "./features/game/components/game-grid";
 import GenreList from "./features/genre/components/genre-list";
 import type { Genres } from "./features/genre/type";
-import PlatformList from "./features/platform/components/platform-list";
 import type { Platform } from "./features/platform/type";
 import type { GameQuery, SortOrder } from "./types/query";
-import SortSelector from "./components/sort-selector";
 import getHeadingTitle from "./utils/get-heading-title";
 
 const App = () => {
@@ -44,26 +42,17 @@ const App = () => {
       <Navbar onSearch={handleSearch} />
       <main className="flex flex-1 mt-[60px]">
         <aside className="hidden lg:block w-64 border-r border-border bg-background/50 p-6 overflow-y-auto">
-          <h2 className="text-lg font-semibold mb-4">Genres</h2>
           <GenreList
             onGenreSelect={handleSelectedGenre}
             selectedGenre={gameQuery.genre}
           />
         </aside>
         <div className="flex-1 flex flex-col">
-          <div className="p-2 flex gap-x-2 items-center">
-            <PlatformList
-              selectedPlatform={gameQuery.platform}
-              onPlatformSelect={handleSelectedPlatforms}
-            />
-            <SortSelector
-              onSelectSortOrder={handleSelectedSortOrder}
-              selectedSortOrder={gameQuery.sortOrder}
-            />
-          </div>
           <GameGrid
             gameQuery={gameQuery}
             headingTitle={getHeadingTitle(gameQuery)}
+            handleSelectedPlatforms={handleSelectedPlatforms}
+            handleSelectedSortOrder={handleSelectedSortOrder}
           />
         </div>
       </main>

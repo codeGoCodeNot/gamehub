@@ -20,6 +20,7 @@ const GenreList = ({ onGenreSelect, selectedGenre }: GenreListProps) => {
 
   return (
     <div className="flex flex-col gap-y-1">
+      <h2 className="text-lg font-semibold mb-4">Genres</h2>
       {displayedGenres?.map((genre) => (
         <button
           key={genre.id}
