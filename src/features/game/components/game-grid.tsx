@@ -46,6 +46,13 @@ const GameGrid = ({
             <GameCardSkeleton key={index} />
           ))}
         {error && <p className="text-red-500">{error}</p>}
+        {!isLoading &&
+          (gameQuery.searchTerm || gameQuery.platform) &&
+          games?.length === 0 && (
+            <div className="flex justify-center items-center h-96 col-span-full">
+              <p className="text-lg text-muted-foreground">No games found</p>
+            </div>
+          )}
         {displayedGames?.map((game) => (
           <GameCard key={game.id} game={game} />
         ))}

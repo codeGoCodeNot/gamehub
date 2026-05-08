@@ -3,13 +3,15 @@ import type { Game } from "@/features/game/type";
 import GamePlatformIconList from "./game-platform-icon-list";
 import { Badge } from "@/components/ui/badge";
 import getCroppedImageUrl from "@/services/image-url";
+import Emoji from "@/features/game/components/emoji";
 
 type GameCardProps = {
   game: Game;
 };
 
 const GameCard = ({ game }: GameCardProps) => {
-  const { name, background_image, parent_platforms, metacritic } = game;
+  const { name, background_image, parent_platforms, metacritic, rating_top } =
+    game;
 
   return (
     <Card className="overflow-hidden pt-0">
@@ -21,7 +23,12 @@ const GameCard = ({ game }: GameCardProps) => {
         />
       </div>
       <CardHeader>
-        <CardTitle className="text-xl font-semibold">{name}</CardTitle>
+        <CardTitle className="text-xl font-semibold">
+          <span className="flex items-center">
+            {name}
+            <Emoji rating_top={rating_top ?? 0} />
+          </span>
+        </CardTitle>
         <div className="flex justify-between items-center">
           <GamePlatformIconList
             platforms={(parent_platforms ?? []).map(({ platform }) => platform)}
