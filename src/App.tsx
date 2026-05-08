@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Navbar from "./components/navbar";
+import Navbar from "./components/layout/navbar";
 import GameGrid from "./features/game/components/game-grid";
 import GenreList from "./features/genre/components/genre-list";
 import type { Genres } from "./features/genre/type";

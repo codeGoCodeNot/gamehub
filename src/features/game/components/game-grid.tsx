@@ -3,7 +3,7 @@ import { useState } from "react";
 import useGames from "../hooks/use-games";
 import GameCard from "./game-card";
 import GameCardSkeleton from "./game-card-skeleton";
-import Heading from "@/components/heading";
+import Heading from "@/components/layout/heading";
 
 type GameGridProps = {
   gameQuery: GameQuery;

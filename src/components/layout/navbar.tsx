@@ -1,6 +1,6 @@
 import ThemeToggle from "@/components/theme/theme-toggle";
 import gameIcon from "@/assets/game-icon.png";
-import SearchInput from "./search-input";
+import SearchInput from "../search-input";
 
 type NavbarProps = {
   onSearch: (searchTerm: string) => void;
