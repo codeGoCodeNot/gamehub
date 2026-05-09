@@ -1,7 +1,7 @@
-import Counter from "./learning-state-management/state-management/counter";
+import Auth from "./learning-state-management/state-management/auth";
 
 const App = () => {
-  return <Counter />;
+  return <Auth />;
 };
 
 export default App;
