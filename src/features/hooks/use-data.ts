@@ -2,7 +2,7 @@ import apiClient from "@/services/api-client";
 import axios, { AxiosError, type AxiosRequestConfig } from "axios";
 import { useEffect, useState } from "react";
 
-type FetchResponse<T> = {
+export type FetchResponse<T> = {
   count: number;
   next: string | null;
   previous: string | null;

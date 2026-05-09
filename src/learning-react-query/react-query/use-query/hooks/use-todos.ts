@@ -1,6 +1,6 @@
-import { CACHE_KEY_TODOS } from "@/react-query/constant";
-import { todoService } from "@/react-query/services/todo-service";
 import { useQuery } from "@tanstack/react-query";
+import { CACHE_KEY_TODOS } from "../../constant";
+import { todoService } from "../../services/todo-service";
 
 const useTodos = () => {
   return useQuery({
