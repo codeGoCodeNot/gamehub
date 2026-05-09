@@ -8,16 +8,15 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { useRef } from "react";
-import type { Todo } from "../use-query/hooks/use-todos";
 import useTodos from "../use-query/hooks/use-todos";
 import useMutateTodo from "./use-mutate-todo";
+import type { Todo } from "../services/todo-service";
 
 const TodoForm = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const { data: todos, isLoading, error } = useTodos();
   const {
     mutate,
-    isPending,
     error: mutationError,
     reset,
   } = useMutateTodo({
@@ -47,9 +46,7 @@ const TodoForm = () => {
           </CardHeader>
           <CardContent className="flex items-center gap-x-1">
             <Input placeholder="Enter todo" ref={inputRef} />
-            <Button type="submit" disabled={isPending}>
-              {isPending ? "Adding..." : "Add"}
-            </Button>
+            <Button type="submit">Add</Button>
           </CardContent>
           <CardFooter>
             {mutationError && (
