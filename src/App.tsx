@@ -46,7 +46,7 @@ const App = () => {
     <div className="flex flex-col min-h-screen w-full">
       <Navbar onSearch={handleSearch} />
       <main className="flex flex-1 mt-[60px]">
-        <aside className="hidden lg:block w-64 border-r border-border bg-background/50 p-6 overflow-y-auto">
+        <aside className="hidden lg:block w-64 border-r border-border h-[calc(100vh-80px)] overflow-hidden bg-background/50">
           <GenreList
             onGenreSelect={handleSelectedGenre}
             selectedGenreId={gameQuery.genreId}
