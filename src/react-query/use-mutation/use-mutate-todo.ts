@@ -1,6 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { CACHE_KEY_TODOS } from "../constant";
-import ApiClient from "../services/api-client";
 import { todoService, type Todo } from "../services/todo-service";
 
 type UseMutateTodoProps = {
