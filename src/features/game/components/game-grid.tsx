@@ -47,7 +47,7 @@ const GameGrid = ({
         <Heading title={headingTitle} />
         <div className="p-2 flex gap-x-2 items-center">
           <PlatformList
-            selectedPlatform={gameQuery.platform}
+            selectedPlatform={gameQuery.platformId}
             onPlatformSelect={handleSelectedPlatforms}
           />
           <SortSelector
@@ -62,7 +62,7 @@ const GameGrid = ({
             ))}
           {error && <p className="text-red-500">{error.message}</p>}
           {!isLoading &&
-            (gameQuery.searchTerm || gameQuery.platform) &&
+            (gameQuery.searchTerm || gameQuery.platformId) &&
             games?.length === 0 && (
               <div className="flex justify-center items-center h-96 col-span-full">
                 <p className="text-lg text-muted-foreground">No games found</p>

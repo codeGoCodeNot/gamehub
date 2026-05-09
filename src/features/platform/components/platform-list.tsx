@@ -5,7 +5,7 @@ import PlatformDropdown from "./platform-dropdown";
 
 type PlatformListProps = {
   onPlatformSelect: (platform: Platform | null) => void;
-  selectedPlatform: Platform | null;
+  selectedPlatform: number | undefined;
 };
 
 const PlatformList = ({

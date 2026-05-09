@@ -11,7 +11,7 @@ export type SortOrder =
 
 export type GameQuery = {
   genreId?: number;
-  platform: Platform | null;
+  platformId?: number;
   sortOrder: SortOrder;
   searchTerm: string;
 };

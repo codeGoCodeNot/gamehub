@@ -12,7 +12,7 @@ import type { Platform } from "../type";
 type PlatformDropdownProps = {
   platforms: Platform[] | undefined;
   onIsExpanded: (isExpanded: boolean) => void;
-  selectedPlatform: Platform | null;
+  selectedPlatform: number | undefined;
   isExpanded: boolean;
   onPlatformSelect: (platform: Platform | null) => void;
 };
@@ -26,7 +26,8 @@ const PlatformDropdown = ({
 }: PlatformDropdownProps) => {
   const displayedPlatforms = isExpanded ? platforms : platforms?.slice(0, 10);
 
-  const handleSelectPlatform = (platform: Platform) => {
+  const handleSelectPlatform = (platformId: number | undefined) => {
+    const platform = platforms?.find((p) => p.id === platformId) || null;
     onPlatformSelect(platform);
   };
 
@@ -34,7 +35,9 @@ const PlatformDropdown = ({
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="outline">
-          {selectedPlatform ? selectedPlatform.name : "Platforms"}
+          {selectedPlatform
+            ? platforms?.find((p) => p.id === selectedPlatform)?.name
+            : "Platforms"}
           <LucideArrowDown className="ml-2 h-4 w-4" />
         </Button>
       </DropdownMenuTrigger>
@@ -43,9 +46,9 @@ const PlatformDropdown = ({
           {displayedPlatforms?.map((platform) => (
             <DropdownMenuItem
               key={platform.id}
-              onClick={() => handleSelectPlatform(platform)}
+              onClick={() => handleSelectPlatform(platform.id)}
               className={
-                selectedPlatform?.id === platform.id /* ✅ Fixed */
+                selectedPlatform === platform.id /* ✅ Fixed */
                   ? "bg-blue-50 dark:bg-blue-950"
                   : ""
               }

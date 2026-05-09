@@ -11,14 +11,15 @@ const useGames = (gameQuery: GameQuery) => {
     const params: Record<string, string> = {};
 
     if (gameQuery.genreId) params.genres = gameQuery.genreId.toString();
-    if (gameQuery.platform) params.platforms = gameQuery.platform.id.toString();
+    if (gameQuery.platformId)
+      params.platforms = gameQuery.platformId.toString();
     if (gameQuery.sortOrder) params.ordering = gameQuery.sortOrder;
     if (gameQuery.searchTerm) params.search = gameQuery.searchTerm;
 
     return Object.keys(params).length ? { params } : undefined;
   }, [
     gameQuery.genreId,
-    gameQuery.platform?.id,
+    gameQuery.platformId,
     gameQuery.sortOrder,
     gameQuery.searchTerm,
   ]);

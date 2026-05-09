@@ -7,16 +7,18 @@ import type { Genres } from "./features/genre/type";
 import type { Platform } from "./features/platform/type";
 import type { GameQuery, SortOrder } from "./types/query";
 import useGenres from "./features/genre/hooks/use-genres";
+import usePlatform from "./features/platform/hooks/use-platform";
 
 const App = () => {
   const [gameQuery, setGameQuery] = useState<GameQuery>({
     genreId: undefined,
-    platform: null,
+    platformId: undefined,
     sortOrder: "",
     searchTerm: "",
   });
 
   const { data: genres } = useGenres();
+  const { data: platforms } = usePlatform();
 
   const handleSearch = (searchTerm: string) => {
     setGameQuery((prev) => ({ ...prev, searchTerm }));
@@ -32,7 +34,7 @@ const App = () => {
   const handleSelectedPlatforms = (platform: Platform | null) => {
     setGameQuery((prev) => ({
       ...prev,
-      platform: prev.platform?.id === platform?.id ? null : platform,
+      platformId: prev.platformId === platform?.id ? undefined : platform?.id,
     }));
   };
 
@@ -53,7 +55,7 @@ const App = () => {
         <div className="flex-1 flex flex-col">
           <GameGrid
             gameQuery={gameQuery}
-            headingTitle={getHeadingTitle(gameQuery, genres)}
+            headingTitle={getHeadingTitle(gameQuery, genres, platforms)}
             handleSelectedPlatforms={handleSelectedPlatforms}
             handleSelectedSortOrder={handleSelectedSortOrder}
           />
