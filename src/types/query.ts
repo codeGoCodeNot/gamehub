@@ -1,4 +1,3 @@
-import type { Genres } from "@/features/genre/type";
 import type { Platform } from "@/features/platform/type";
 
 export type SortOrder =
@@ -11,7 +10,7 @@ export type SortOrder =
   | null;
 
 export type GameQuery = {
-  genre: Genres | null;
+  genreId?: number;
   platform: Platform | null;
   sortOrder: SortOrder;
   searchTerm: string;

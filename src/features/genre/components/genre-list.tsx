@@ -6,10 +6,10 @@ import { useState } from "react";
 
 type GenreListProps = {
   onGenreSelect: (genre: Genres | null) => void;
-  selectedGenre: Genres | null;
+  selectedGenreId: number | undefined;
 };
 
-const GenreList = ({ onGenreSelect, selectedGenre }: GenreListProps) => {
+const GenreList = ({ onGenreSelect, selectedGenreId }: GenreListProps) => {
   const { data: genres, isLoading, error } = useGenres();
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -27,7 +27,7 @@ const GenreList = ({ onGenreSelect, selectedGenre }: GenreListProps) => {
         <button
           key={genre.id}
           className={`flex items-center gap-3 p-2 rounded-lg transition-colors cursor-pointer ${
-            selectedGenre?.id === genre.id
+            selectedGenreId === genre.id
               ? "bg-blue-50 dark:bg-blue-950"
               : "hover:bg-gray-100 dark:hover:bg-gray-800"
           }`}
