@@ -45,7 +45,7 @@ const GameGrid = ({
           Array.from({ length: 15 }).map((_, index) => (
             <GameCardSkeleton key={index} />
           ))}
-        {error && <p className="text-red-500">{error}</p>}
+        {error && <p className="text-red-500">{error.message}</p>}
         {!isLoading &&
           (gameQuery.searchTerm || gameQuery.platform) &&
           games?.length === 0 && (

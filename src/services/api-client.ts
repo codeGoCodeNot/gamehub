@@ -1,8 +1,25 @@
-import axios from "axios";
+import type { FetchResponse } from "@/types/query";
+import axios, { type AxiosRequestConfig } from "axios";
 
-export default axios.create({
+export const axiosInstance = axios.create({
   baseURL: "https://api.rawg.io/api",
   params: {
     key: import.meta.env.VITE_RAWG_API_KEY,
   },
 });
+
+class ApiClient<T> {
+  endpoint: string;
+
+  constructor(endpoint: string) {
+    this.endpoint = endpoint;
+  }
+
+  getAll(config?: AxiosRequestConfig) {
+    return axiosInstance
+      .get<FetchResponse<T>>(this.endpoint, config)
+      .then((response) => response.data.results);
+  }
+}
+
+export default ApiClient;

@@ -14,8 +14,8 @@ const GenreList = ({ onGenreSelect, selectedGenre }: GenreListProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const displayedGenres: Genres[] | undefined = isExpanded
-    ? genres?.results
-    : genres?.results.slice(0, 7);
+    ? genres
+    : genres?.slice(0, 7);
 
   if (isLoading) return <GenreListSkeleton />;
   if (error) return <p>Error loading genres: {error.message}</p>;
@@ -42,7 +42,7 @@ const GenreList = ({ onGenreSelect, selectedGenre }: GenreListProps) => {
         </button>
       ))}
 
-      {genres && genres.results.length > 7 && (
+      {genres && genres.length > 7 && (
         <button
           onClick={() => setIsExpanded(!isExpanded)}
           className="text-sm text-blue-600 dark:text-blue-400 hover:underline mt-2 py-2"

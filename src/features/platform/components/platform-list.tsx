@@ -23,7 +23,7 @@ const PlatformList = ({
 
   return (
     <PlatformDropdown
-      platforms={platforms?.results}
+      platforms={platforms}
       onIsExpanded={handleExpandedChange}
       selectedPlatform={selectedPlatform}
       isExpanded={isExpanded}

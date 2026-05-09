@@ -1,9 +1,12 @@
-import useData from "@/features/hooks/use-data";
+import ApiClient from "@/services/api-client";
 import type { GameQuery } from "@/types/query";
+import { useQuery } from "@tanstack/react-query";
 import { useMemo } from "react";
 import type { Game } from "../type";
 
 const useGames = (gameQuery: GameQuery) => {
+  const apiClient = new ApiClient<Game>("/games");
+
   const requestConfig = useMemo(() => {
     const params: Record<string, string> = {};
 
@@ -20,7 +23,11 @@ const useGames = (gameQuery: GameQuery) => {
     gameQuery.searchTerm,
   ]);
 
-  return useData<Game>("/games", requestConfig);
+  return useQuery({
+    queryKey: ["games", requestConfig],
+    queryFn: () => apiClient.getAll(requestConfig),
+    staleTime: 24 * 60 * 60 * 1000, // 24 hours
+  });
 };
 
 export default useGames;
