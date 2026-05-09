@@ -6,6 +6,7 @@ import getHeadingTitle from "./utils/get-heading-title";
 import type { Genres } from "./features/genre/type";
 import type { Platform } from "./features/platform/type";
 import type { GameQuery, SortOrder } from "./types/query";
+import useGenres from "./features/genre/hooks/use-genres";
 
 const App = () => {
   const [gameQuery, setGameQuery] = useState<GameQuery>({
@@ -14,6 +15,8 @@ const App = () => {
     sortOrder: "",
     searchTerm: "",
   });
+
+  const { data: genres } = useGenres();
 
   const handleSearch = (searchTerm: string) => {
     setGameQuery((prev) => ({ ...prev, searchTerm }));
@@ -50,7 +53,7 @@ const App = () => {
         <div className="flex-1 flex flex-col">
           <GameGrid
             gameQuery={gameQuery}
-            headingTitle={getHeadingTitle(gameQuery)}
+            headingTitle={getHeadingTitle(gameQuery, genres)}
             handleSelectedPlatforms={handleSelectedPlatforms}
             handleSelectedSortOrder={handleSelectedSortOrder}
           />

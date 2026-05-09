@@ -1,8 +1,10 @@
-import useGenres from "@/features/genre/hooks/use-genres";
+import type { Genres } from "@/features/genre/type";
 import type { GameQuery } from "@/types/query";
 
-const getHeadingTitle = (gameQuery: GameQuery): string => {
-  const { data: genres } = useGenres();
+const getHeadingTitle = (
+  gameQuery: GameQuery,
+  genres: Genres[] | undefined,
+): string => {
   const genre = genres?.find((g) => g.id === gameQuery.genreId);
 
   if (gameQuery.searchTerm)
