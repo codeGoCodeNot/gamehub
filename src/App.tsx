@@ -1,7 +1,7 @@
-import Auth from "./learning-state-management/state-management/auth";
+import Auth from "./learning-state-management/state-management/components/auth";
+import Navbar from "./learning-state-management/state-management/components/navbar";
 import AuthProvider from "./learning-state-management/state-management/context/provider/auth-provider";
 import TaskProvider from "./learning-state-management/state-management/context/provider/task-provider";
-import Navbar from "./learning-state-management/state-management/navbar";
 
 const App = () => {
   return (
