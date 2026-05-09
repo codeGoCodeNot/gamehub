@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import useTodos, { type Todo } from "../use-query/hooks/use-todos";
 import axios from "axios";
 import { CACHE_KEY_TODOS } from "../constant";
+import { type Todo } from "../use-query/hooks/use-todos";
 
 type UseMutateTodoProps = {
   onAdd: () => void;
