@@ -19,11 +19,11 @@ const PlatformList = ({
     setIsExpanded(expanded);
   };
 
-  if (error) return <p>Error loading platforms: {error}</p>;
+  if (error) return <p>Error loading platforms: {error.message}</p>;
 
   return (
     <PlatformDropdown
-      platforms={platforms}
+      platforms={platforms?.results}
       onIsExpanded={handleExpandedChange}
       selectedPlatform={selectedPlatform}
       isExpanded={isExpanded}

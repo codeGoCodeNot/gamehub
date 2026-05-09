@@ -18,7 +18,7 @@ const GenreList = ({ onGenreSelect, selectedGenre }: GenreListProps) => {
     : genres?.results.slice(0, 7);
 
   if (isLoading) return <GenreListSkeleton />;
-  if (error) return null;
+  if (error) return <p>Error loading genres: {error.message}</p>;
 
   return (
     <div className="flex flex-col gap-y-1">
