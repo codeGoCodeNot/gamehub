@@ -21,7 +21,7 @@ const GenreList = ({ onGenreSelect, selectedGenre }: GenreListProps) => {
   if (error) return <p>Error loading genres: {error.message}</p>;
 
   return (
-    <div className="flex flex-col gap-y-1">
+    <div className="flex flex-col gap-y-1 fixed left-2 w-64 h-screen overflow-y-auto z-10 pr-1">
       <h2 className="text-lg font-semibold mb-4">Genres</h2>
       {displayedGenres?.map((genre) => (
         <button

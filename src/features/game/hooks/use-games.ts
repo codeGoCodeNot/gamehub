@@ -1,6 +1,6 @@
 import ApiClient from "@/services/api-client";
 import type { GameQuery } from "@/types/query";
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import { useMemo } from "react";
 import type { Game } from "../type";
 
@@ -23,10 +23,23 @@ const useGames = (gameQuery: GameQuery) => {
     gameQuery.searchTerm,
   ]);
 
-  return useQuery({
+  const pageSize = 20;
+
+  return useInfiniteQuery({
     queryKey: ["games", requestConfig],
-    queryFn: () => apiClient.getAll(requestConfig),
+    queryFn: ({ pageParam = 1 }) =>
+      apiClient.getAll({
+        ...requestConfig,
+        params: {
+          ...requestConfig?.params,
+          page: pageParam,
+          page_size: 20,
+        },
+      }),
     staleTime: 24 * 60 * 60 * 1000, // 24 hours
+    getNextPageParam: (lastPage, allPages) =>
+      lastPage.length === pageSize ? allPages.length + 1 : undefined,
+    initialPageParam: 1,
   });
 };
 

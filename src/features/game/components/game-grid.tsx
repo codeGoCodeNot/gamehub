@@ -7,6 +7,7 @@ import { useState } from "react";
 import useGames from "../hooks/use-games";
 import GameCard from "./game-card";
 import GameCardSkeleton from "./game-card-skeleton";
+import { Button } from "@/components/ui/button";
 
 type GameGridProps = {
   gameQuery: GameQuery;
@@ -21,11 +22,19 @@ const GameGrid = ({
   handleSelectedPlatforms,
   handleSelectedSortOrder,
 }: GameGridProps) => {
-  const { data: games, error, isLoading } = useGames(gameQuery);
+  const {
+    data,
+    error,
+    isLoading,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+  } = useGames(gameQuery);
 
-  const [isExpanded, setIsExpanded] = useState(false);
+  const games = data?.pages.flat() || [];
+  const [showAllPages, setShowAllPages] = useState(true);
 
-  const displayedGames = isExpanded ? games : games?.slice(0, 15);
+  const displayedGames = showAllPages ? games : games.slice(0, 20);
 
   return (
     <div className="flex flex-col flex-1">
@@ -56,15 +65,24 @@ const GameGrid = ({
         {displayedGames?.map((game) => (
           <GameCard key={game.id} game={game} />
         ))}
+        {isFetchingNextPage &&
+          Array.from({ length: 10 }).map((_, i) => (
+            <GameCardSkeleton key={`skeleton-${i}`} />
+          ))}
       </div>
-      {games && games.length > 9 && (
-        <div className="flex justify-center mt-4">
-          <button
-            onClick={() => setIsExpanded(!isExpanded)}
-            className={`text-sm text-blue-600 dark:text-blue-400 hover:underline ${isExpanded ? "mb-2" : "mt-2"}`}
-          >
-            {isExpanded ? "Show less" : "Show more"}
-          </button>
+      {showAllPages && hasNextPage && (
+        <Button
+          variant="ghost"
+          onClick={() => fetchNextPage()}
+          className="my-2"
+        >
+          {isFetchingNextPage ? "Loading..." : "Load More"}
+        </Button>
+      )}
+
+      {showAllPages && !hasNextPage && (
+        <div className="flex justify-center my-2">
+          <Button onClick={() => setShowAllPages(false)}>Show Less</Button>
         </div>
       )}
     </div>
