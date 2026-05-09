@@ -1,8 +1,7 @@
-import { useContext } from "react";
-import AuthContext from "./context/auth-context";
+import useAuth from "./hooks/use-auth";
 
 const Auth = () => {
-  const { auth, authDispatch } = useContext(AuthContext);
+  const { auth, authDispatch } = useAuth();
 
   if (auth) {
     return (
