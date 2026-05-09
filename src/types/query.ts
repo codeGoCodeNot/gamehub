@@ -1,5 +1,3 @@
-import type { Platform } from "@/features/platform/type";
-
 export type SortOrder =
   | ""
   | "-added"
