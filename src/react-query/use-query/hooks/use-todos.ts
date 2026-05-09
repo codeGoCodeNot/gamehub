@@ -1,3 +1,4 @@
+import { CACHE_KEY_TODOS } from "@/react-query/constant";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
@@ -15,7 +16,7 @@ const useTodos = () => {
       .then((res) => res.data);
 
   return useQuery({
-    queryKey: ["todos"],
+    queryKey: CACHE_KEY_TODOS,
     queryFn: fetchTodos,
     staleTime: 10 * 1000, // 10 seconds
   });

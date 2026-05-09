@@ -1,7 +1,7 @@
-import PostList from "./react-query/use-query/post-list";
+import TodoForm from "./react-query/use-mutation/todo-form";
 
 const App = () => {
-  return <PostList />;
+  return <TodoForm />;
 };
 
 export default App;
