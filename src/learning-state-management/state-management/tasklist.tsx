@@ -1,10 +1,10 @@
 import { Button } from "@/components/ui/button";
-import { useReducer } from "react";
-import taskReducer from "./reducer/task-reducer";
 import { LucideTrash } from "lucide-react";
+import { useContext } from "react";
+import TaskContext from "./context/task-context";
 
 const TaskList = () => {
-  const [tasks, dispatch] = useReducer(taskReducer, []);
+  const { tasks, dispatch } = useContext(TaskContext);
 
   return (
     <div>

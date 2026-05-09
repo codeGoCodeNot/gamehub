@@ -1,14 +1,14 @@
-import { useReducer, useState } from "react";
-import authReducer from "./reducer/auth-reducer";
+import { useContext } from "react";
+import AuthContext from "./context/auth-context";
 
 const Auth = () => {
-  const [user, dispatch] = useReducer(authReducer, "");
+  const { auth, authDispatch } = useContext(AuthContext);
 
-  if (user) {
+  if (auth) {
     return (
       <div className="flex gap-x-2">
-        <span>{user}</span>
-        <a href="#" onClick={() => dispatch({ type: "LOGOUT" })}>
+        <span>{auth}</span>
+        <a href="#" onClick={() => authDispatch({ type: "LOGOUT" })}>
           Log out
         </a>
       </div>
@@ -19,7 +19,9 @@ const Auth = () => {
     <div>
       <a
         href="#"
-        onClick={() => dispatch({ type: "LOGIN", username: "Johnsen Berdin" })}
+        onClick={() =>
+          authDispatch({ type: "LOGIN", username: "Johnsen Berdin" })
+        }
       >
         Log in
       </a>
