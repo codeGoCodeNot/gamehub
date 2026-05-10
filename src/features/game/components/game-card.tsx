@@ -5,14 +5,14 @@ import { Badge } from "@/components/ui/badge";
 import getCroppedImageUrl from "@/services/image-url";
 import Emoji from "@/features/game/components/emoji";
 import { Link } from "react-router-dom";
+import { metacriticColorMap } from "../constant";
 
 type GameCardProps = {
   game: Game;
 };
 
 const GameCard = ({ game }: GameCardProps) => {
-  const { name, background_image, parent_platforms, metacritic, rating_top } =
-    game;
+  const { name, background_image, platforms, metacritic, rating_top } = game;
 
   return (
     <Card className="overflow-hidden pt-0">
@@ -34,11 +34,11 @@ const GameCard = ({ game }: GameCardProps) => {
         </CardTitle>
         <div className="flex justify-between items-center">
           <GamePlatformIconList
-            platforms={(parent_platforms ?? []).map(({ platform }) => platform)}
+            platforms={(platforms ?? []).map(({ platform }) => platform)}
           />
           <Badge
             variant="destructive"
-            className={`${(metacritic ?? 0) >= 75 ? "text-green-400" : (metacritic ?? 0) >= 50 ? "text-yellow-400" : "text-red-600"} text-sm`}
+            className={metacriticColorMap(metacritic)}
           >
             {metacritic ?? "N/A"}
           </Badge>

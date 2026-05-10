@@ -10,3 +10,7 @@ export const iconMap: Record<string, IconType> = {
   linux: SiLinux,
   nintendo: FaGamepad,
 };
+
+export const metacriticColorMap = (metacritic?: number) => {
+  return `${(metacritic ?? 0) >= 75 ? "text-green-400" : (metacritic ?? 0) >= 50 ? "text-yellow-400" : "text-red-600"} text-sm`;
+};
