@@ -8,7 +8,7 @@ import GameCard from "./game-card";
 import GameCardSkeleton from "./game-card-skeleton";
 
 const GameGrid = () => {
-  const { gameQuery, setPlatform, setSortOrder } = useGameQuery();
+  const { gameQuery } = useGameQuery();
 
   const {
     data,
