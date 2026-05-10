@@ -20,7 +20,7 @@ const GameDetailsPage = () => {
   if (error) return <p>Error loading game details: {error.message}</p>;
 
   return (
-    <div className="py-30 flex flex-col items-center px-10 min-h-screen w-full">
+    <div className="py-30 flex flex-1 flex-col items-center px-10 min-h-screen w-full">
       <div className="flex flex-col gap-y-10">
         <GameDescription game={game} />
         <GameDefinition
@@ -29,8 +29,10 @@ const GameDetailsPage = () => {
           genres={game?.genres}
           publishers={game?.publishers}
         />
-        <GameTrailer id={game?.id} />
-        <GameScreenshots gameId={game?.id} />
+        <div className="flex flex-col items-center">
+          <GameTrailer id={game?.id} />
+          <GameScreenshots gameId={game?.id} />
+        </div>
       </div>
     </div>
   );
