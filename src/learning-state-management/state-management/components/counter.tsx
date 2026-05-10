@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { useReducer } from "react";
-import counterReducer from "./reducer/counter-reducer";
+import counterReducer from "../reducer/counter-reducer";
 
 const Counter = () => {
   const [count, dispatch] = useReducer(counterReducer, 0);

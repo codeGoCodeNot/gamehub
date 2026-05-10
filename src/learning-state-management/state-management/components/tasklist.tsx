@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { LucideTrash } from "lucide-react";
-import useTask from "./hooks/use-task";
+import useTask from "../hooks/use-task";
 
 const TaskList = () => {
   const { tasks, dispatch } = useTask();
