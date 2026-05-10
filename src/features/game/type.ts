@@ -6,6 +6,16 @@ export type Publisher = {
   name: string;
 };
 
+export type Trailer = {
+  id: number;
+  name: string;
+  preview: string;
+  data: {
+    480: string;
+    max: string;
+  };
+};
+
 export type Game = {
   id: number;
   name: string;

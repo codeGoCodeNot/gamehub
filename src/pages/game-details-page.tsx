@@ -28,7 +28,7 @@ const GameDetailsPage = () => {
           genres={game?.genres}
           publishers={game?.publishers}
         />
-        <GameTrailer />
+        <GameTrailer id={game?.id} />
       </div>
     </div>
   );
