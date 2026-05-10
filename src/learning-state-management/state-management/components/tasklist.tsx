@@ -1,33 +1,23 @@
 import { Button } from "@/components/ui/button";
 import { LucideTrash } from "lucide-react";
-import useTask from "../hooks/use-task";
+import useTaskStore from "../store/task-store";
 
 const TaskList = () => {
-  const { tasks, dispatch } = useTask();
+  const { tasks, addTask, removeTask } = useTaskStore();
 
   return (
     <div>
-      <Button
-        onClick={() =>
-          dispatch({
-            type: "ADD_TASK",
-            task: {
-              id: Date.now().toString(),
-              title: `New Task - ${new Date().toLocaleString()}`,
-            },
-          })
-        }
-      >
+      <Button onClick={() => addTask("New Task" + tasks.length)}>
         Add Task
       </Button>
       <ul>
         {tasks.map((task) => (
           <li key={task.id} className="flex gap-x-2">
-            <span>{task.title}</span>
+            <span>{task.text}</span>
             <Button
               variant="outline"
               size="icon"
-              onClick={() => dispatch({ type: "REMOVE_TASK", taskId: task.id })}
+              onClick={() => removeTask(task.id)}
             >
               <LucideTrash />
             </Button>

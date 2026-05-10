@@ -1,22 +1,31 @@
 import { Badge } from "@/components/ui/badge";
-import { useContext } from "react";
-
+import useAuthStore from "../store/auth-store";
+import useCounterStore from "../store/counter-store";
+import useTaskStore from "../store/task-store";
+import Counter from "./counter";
 import TaskList from "./tasklist";
-import AuthContext from "../context/auth-context";
-import TaskContext from "../context/task-context";
 
 const Navbar = () => {
-  const { tasks } = useContext(TaskContext);
-  const { auth } = useContext(AuthContext);
+  const { tasks } = useTaskStore();
+  const { username } = useAuthStore();
+  const { count } = useCounterStore();
 
   return (
     <div className="flex flex-col gap-y-4">
-      {auth && (
+      {username && (
         <>
           <div>
             <h1>Navbar</h1>
-            <Badge>{tasks.length}</Badge>
+            <Badge>
+              <span>Counter:</span>
+              {count}
+            </Badge>
+            <Badge>
+              <span>Task:</span>
+              {tasks.length}
+            </Badge>
           </div>
+          <Counter />
           <TaskList />
         </>
       )}

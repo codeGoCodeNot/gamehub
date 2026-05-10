@@ -1,13 +1,13 @@
-import useAuth from "../hooks/use-auth";
+import useAuthStore from "../store/auth-store";
 
 const Auth = () => {
-  const { auth, authDispatch } = useAuth();
+  const { login, logout, username } = useAuthStore();
 
-  if (auth) {
+  if (username) {
     return (
       <div className="flex gap-x-2">
-        <span>{auth}</span>
-        <a href="#" onClick={() => authDispatch({ type: "LOGOUT" })}>
+        <span>{username}</span>
+        <a href="#" onClick={() => logout()}>
           Log out
         </a>
       </div>
@@ -16,12 +16,7 @@ const Auth = () => {
 
   return (
     <div>
-      <a
-        href="#"
-        onClick={() =>
-          authDispatch({ type: "LOGIN", username: "Johnsen Berdin" })
-        }
-      >
+      <a href="#" onClick={() => login("Johnsen Berdin")}>
         Log in
       </a>
     </div>

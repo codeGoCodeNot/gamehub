@@ -1,21 +1,17 @@
 import { Button } from "@/components/ui/button";
-import { useReducer } from "react";
-import counterReducer from "../reducer/counter-reducer";
+import useCounterStore from "../store/counter-store";
 
 const Counter = () => {
-  const [count, dispatch] = useReducer(counterReducer, 0);
+  const { count, decrement, increment, reset } = useCounterStore();
 
   return (
     <div>
       <h1>Count: {count}</h1>
-      <Button onClick={() => dispatch({ type: "INCREMENT" })}>+</Button>
-      <Button
-        onClick={() => dispatch({ type: "DECREMENT" })}
-        disabled={count === 0}
-      >
+      <Button onClick={increment}>+</Button>
+      <Button onClick={decrement} disabled={count === 0}>
         -
       </Button>
-      <Button onClick={() => dispatch({ type: "RESET" })}>Reset</Button>
+      <Button onClick={reset}>Reset</Button>
     </div>
   );
 };
