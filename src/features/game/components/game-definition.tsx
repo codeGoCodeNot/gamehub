@@ -1,8 +1,6 @@
 import { Badge } from "@/components/ui/badge";
-import type { Platform } from "@/features/platform/type";
+import type { Platform, Genres, Publisher } from "@/entities";
 import { metacriticColorMap } from "../constant";
-import type { Genres } from "@/features/genre/type";
-import type { Publisher } from "../type";
 
 type GameDefinitionProps = {
   platforms: { platform: Platform }[] | undefined;

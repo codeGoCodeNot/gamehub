@@ -1,4 +1,4 @@
-import type { Platform } from "@/features/platform/type";
+import type { Platform } from "@/entities";
 import { iconMap } from "../constant";
 
 type GamePlatformIconListProps = {

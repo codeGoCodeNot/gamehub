@@ -1,5 +1,5 @@
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
-import type { Game } from "@/features/game/type";
+import type { Game } from "@/entities";
 import GamePlatformIconList from "./game-platform-icon-list";
 import { Badge } from "@/components/ui/badge";
 import getCroppedImageUrl from "@/services/image-url";

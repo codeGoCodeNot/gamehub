@@ -2,7 +2,7 @@ import ApiClient from "@/services/api-client";
 import type { GameQuery } from "@/types/query";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useMemo } from "react";
-import type { Game } from "../type";
+import type { Game } from "@/entities";
 
 const useGames = (gameQuery: GameQuery) => {
   const apiClient = new ApiClient<Game>("/games");

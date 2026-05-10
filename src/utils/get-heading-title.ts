@@ -1,5 +1,4 @@
-import type { Genres } from "@/features/genre/type";
-import type { Platform } from "@/features/platform/type";
+import type { Genres, Platform } from "@/entities";
 import type { GameQuery } from "@/types/query";
 
 const getHeadingTitle = (

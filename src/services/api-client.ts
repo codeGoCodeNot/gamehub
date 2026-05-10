@@ -1,4 +1,4 @@
-import type { FetchResponse } from "@/types/query";
+import type { FetchResponse } from "@/types/api";
 import axios, { type AxiosRequestConfig } from "axios";
 
 export const axiosInstance = axios.create({
