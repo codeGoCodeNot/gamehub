@@ -1,14 +1,16 @@
 import { Badge } from "@/components/ui/badge";
-import useAuthStore from "../store/auth-store";
-import useCounterStore from "../store/counter-store";
-import useTaskStore from "../store/task-store";
+import useAuth from "../hooks/use-auth";
+import useCounter from "../hooks/use-counter";
+import useTask from "../hooks/use-task";
 import Counter from "./counter";
 import TaskList from "./tasklist";
 
 const Navbar = () => {
-  const { tasks } = useTaskStore();
-  const { username } = useAuthStore();
-  const { count } = useCounterStore();
+  const { tasks } = useTask();
+  const { username } = useAuth();
+  const { count } = useCounter();
+
+  console.log("Navbar rendered");
 
   return (
     <div className="flex flex-col gap-y-4">

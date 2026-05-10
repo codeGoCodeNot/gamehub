@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { devtools } from "zustand/middleware";
 
 type AuthStore = {
   username: string;
@@ -6,10 +7,15 @@ type AuthStore = {
   logout: () => void;
 };
 
-const useAuthStore = create<AuthStore>((set) => ({
-  username: "",
-  login: (username) => set(() => ({ username })),
-  logout: () => set(() => ({ username: "" })),
-}));
+const useAuthStore = create<AuthStore>()(
+  devtools(
+    (set) => ({
+      username: "",
+      login: (username: string) => set({ username }),
+      logout: () => set({ username: "" }),
+    }),
+    { name: "AuthStore" },
+  ),
+);
 
 export default useAuthStore;

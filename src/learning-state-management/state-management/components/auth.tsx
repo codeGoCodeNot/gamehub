@@ -1,7 +1,7 @@
-import useAuthStore from "../store/auth-store";
+import useAuth from "../hooks/use-auth";
 
 const Auth = () => {
-  const { login, logout, username } = useAuthStore();
+  const { username, login, logout } = useAuth();
 
   if (username) {
     return (

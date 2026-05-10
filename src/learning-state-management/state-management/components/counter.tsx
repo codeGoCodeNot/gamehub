@@ -1,8 +1,8 @@
 import { Button } from "@/components/ui/button";
-import useCounterStore from "../store/counter-store";
+import useCounter from "../hooks/use-counter";
 
 const Counter = () => {
-  const { count, decrement, increment, reset } = useCounterStore();
+  const { count, decrement, increment, reset } = useCounter();
 
   return (
     <div>
