@@ -1,17 +1,10 @@
+import useGameQuery from "@/state-management/hooks/use-game-query";
 import { useState } from "react";
 import usePlatform from "../hooks/use-platform";
-import type { Platform } from "../type";
 import PlatformDropdown from "./platform-dropdown";
 
-type PlatformListProps = {
-  onPlatformSelect: (platform: Platform | null) => void;
-  selectedPlatform: number | undefined;
-};
-
-const PlatformList = ({
-  onPlatformSelect,
-  selectedPlatform,
-}: PlatformListProps) => {
+const PlatformList = () => {
+  const { gameQuery, setPlatform } = useGameQuery();
   const { data: platforms, error } = usePlatform();
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -25,9 +18,9 @@ const PlatformList = ({
     <PlatformDropdown
       platforms={platforms}
       onIsExpanded={handleExpandedChange}
-      selectedPlatform={selectedPlatform}
+      selectedPlatform={gameQuery.platformId}
       isExpanded={isExpanded}
-      onPlatformSelect={onPlatformSelect}
+      onPlatformSelect={(platform) => setPlatform(platform?.id)}
     />
   );
 };

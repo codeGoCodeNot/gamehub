@@ -10,8 +10,11 @@ const getHeadingTitle = (
   const genre = genres?.find((g) => g.id === gameQuery.genreId);
   const platform = platforms?.find((p) => p.id === gameQuery.platformId);
 
-  if (gameQuery.searchTerm)
-    return `${gameQuery.genreId ?? gameQuery.platformId ?? "Search"}: ${gameQuery.searchTerm}`;
+  if (gameQuery.searchTerm) {
+    const filterName = genre?.name || platform?.name || "Search";
+    return `${filterName}: ${gameQuery.searchTerm}`;
+  }
+
   if (gameQuery.genreId) return genre?.name || "All Games";
   if (gameQuery.platformId) return platform?.name || "All Games";
   return "All Games";

@@ -6,23 +6,18 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import useGameQuery from "@/state-management/hooks/use-game-query";
 import type { SortOrder } from "@/types/query";
 import { LucideArrowDown } from "lucide-react";
-
-type SortSelectorProps = {
-  onSelectSortOrder: (sortOrder: SortOrder) => void;
-  selectedSortOrder: SortOrder;
-};
 
 type SortOption = {
   value: SortOrder;
   label: string;
 };
 
-const SortSelector = ({
-  onSelectSortOrder,
-  selectedSortOrder,
-}: SortSelectorProps) => {
+const SortSelector = () => {
+  const { gameQuery, setSortOrder } = useGameQuery();
+
   const sortOrders: SortOption[] = [
     { value: "", label: "Relevance" },
     { value: "-added", label: "Date added" },
@@ -33,7 +28,7 @@ const SortSelector = ({
   ];
 
   const selectedLabel =
-    sortOrders.find((order) => order.value === selectedSortOrder)?.label ||
+    sortOrders.find((order) => order.value === gameQuery.sortOrder)?.label ||
     "Relevance";
 
   return (
@@ -49,7 +44,7 @@ const SortSelector = ({
           {sortOrders.map((order) => (
             <DropdownMenuItem
               key={order.value}
-              onClick={() => onSelectSortOrder(order.value)}
+              onClick={() => setSortOrder(order.value)}
             >
               {order.label}
             </DropdownMenuItem>

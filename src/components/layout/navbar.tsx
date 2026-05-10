@@ -1,12 +1,8 @@
-import ThemeToggle from "@/components/theme/theme-toggle";
 import gameIcon from "@/assets/game-icon.png";
+import ThemeToggle from "@/components/theme/theme-toggle";
 import SearchInput from "../search-input";
 
-type NavbarProps = {
-  onSearch: (searchTerm: string) => void;
-};
-
-const Navbar = ({ onSearch }: NavbarProps) => {
+const Navbar = () => {
   return (
     <div className="flex flex-1 justify-between items-center border-b px-5 min-h-[60px] bg-background/95 animate-fade-from-top fixed top-0 z-20 w-full">
       <div className="flex items-center gap-x-2">
@@ -16,7 +12,7 @@ const Navbar = ({ onSearch }: NavbarProps) => {
         </h1>
       </div>
 
-      <SearchInput onSearch={onSearch} />
+      <SearchInput />
 
       <div className="flex items-center gap-5">
         <ThemeToggle />

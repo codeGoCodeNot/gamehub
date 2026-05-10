@@ -1,14 +1,13 @@
+import useGameQuery from "@/state-management/hooks/use-game-query";
 import { LucideSearch } from "lucide-react";
 import { useDebouncedCallback } from "use-debounce";
 import { Input } from "./ui/input";
 
-type SearchInputProps = {
-  onSearch: (searchTerm: string) => void;
-};
+const SearchInput = () => {
+  const { setSearch } = useGameQuery();
 
-const SearchInput = ({ onSearch }: SearchInputProps) => {
   const debounced = useDebouncedCallback((value) => {
-    onSearch(value);
+    setSearch(value);
   }, 200);
 
   return (
