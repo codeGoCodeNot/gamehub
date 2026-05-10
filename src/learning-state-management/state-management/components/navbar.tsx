@@ -1,8 +1,9 @@
 import { Badge } from "@/components/ui/badge";
 import { useContext } from "react";
-import TaskContext from "./context/task-context";
+
 import TaskList from "./tasklist";
-import AuthContext from "./context/auth-context";
+import AuthContext from "../context/auth-context";
+import TaskContext from "../context/task-context";
 
 const Navbar = () => {
   const { tasks } = useContext(TaskContext);
