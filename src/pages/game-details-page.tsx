@@ -1,5 +1,6 @@
 import GameDefinition from "@/features/game/components/game-definition";
 import GameDescription from "@/features/game/components/game-description";
+import GameTrailer from "@/features/game/game-trailer";
 import useGame from "@/features/game/hooks/use-game";
 import { LucideLoader } from "lucide-react";
 import { useParams } from "react-router-dom";
@@ -18,8 +19,8 @@ const GameDetailsPage = () => {
   if (error) return <p>Error loading game details: {error.message}</p>;
 
   return (
-    <div className="py-20 flex flex-col items-center px-10 min-h-screen w-full">
-      <div className="flex flex-col gap-y-5">
+    <div className="py-30 flex flex-col items-center px-10 min-h-screen w-full">
+      <div className="flex flex-col gap-y-10">
         <GameDescription game={game} />
         <GameDefinition
           platforms={game?.platforms}
@@ -27,6 +28,7 @@ const GameDetailsPage = () => {
           genres={game?.genres}
           publishers={game?.publishers}
         />
+        <GameTrailer />
       </div>
     </div>
   );
