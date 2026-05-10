@@ -4,6 +4,7 @@ import GamePlatformIconList from "./game-platform-icon-list";
 import { Badge } from "@/components/ui/badge";
 import getCroppedImageUrl from "@/services/image-url";
 import Emoji from "@/features/game/components/emoji";
+import { Link } from "react-router-dom";
 
 type GameCardProps = {
   game: Game;
@@ -24,10 +25,12 @@ const GameCard = ({ game }: GameCardProps) => {
       </div>
       <CardHeader>
         <CardTitle className="text-xl font-semibold">
-          <span className="flex items-center">
-            {name}
-            <Emoji rating_top={rating_top ?? 0} />
-          </span>
+          <Link to={`/games/${game.slug}`} className="hover:underline">
+            <span className="flex items-center">
+              {name}
+              <Emoji rating_top={rating_top ?? 0} />
+            </span>
+          </Link>
         </CardTitle>
         <div className="flex justify-between items-center">
           <GamePlatformIconList

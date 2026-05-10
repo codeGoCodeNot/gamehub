@@ -16,4 +16,5 @@ export type Game = {
   reviews_count: number;
   updated: string;
   genres: Genres[];
+  description_raw: string;
 };
