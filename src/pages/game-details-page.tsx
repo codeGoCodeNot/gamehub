@@ -1,5 +1,6 @@
 import GameDefinition from "@/features/game/components/game-definition";
 import GameDescription from "@/features/game/components/game-description";
+import GameScreenshots from "@/features/game/components/game-screenshots";
 import GameTrailer from "@/features/game/game-trailer";
 import useGame from "@/features/game/hooks/use-game";
 import { LucideLoader } from "lucide-react";
@@ -29,6 +30,7 @@ const GameDetailsPage = () => {
           publishers={game?.publishers}
         />
         <GameTrailer id={game?.id} />
+        <GameScreenshots gameId={game?.id} />
       </div>
     </div>
   );

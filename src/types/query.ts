@@ -14,6 +14,13 @@ export type GameQuery = {
   searchTerm: string;
 };
 
+export type Screenshots = {
+  id: number;
+  image: string;
+  width: number;
+  height: number;
+};
+
 export type FetchResponse<T> = {
   count: number;
   next: string | null;
