@@ -3,9 +3,8 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ThemeProvider } from "next-themes";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { RouterProvider } from "react-router-dom";
+import App from "./App.tsx";
 import "./index.css";
-import router from "./learning-react-routing/react-router/routing/route.tsx";
 import queryClient from "./utils/query-client.ts";
 
 createRoot(document.getElementById("root")!).render(
@@ -17,7 +16,7 @@ createRoot(document.getElementById("root")!).render(
         enableSystem
         disableTransitionOnChange
       >
-        <RouterProvider router={router}></RouterProvider>
+        <App />
         <ReactQueryDevtools initialIsOpen={false} />
       </ThemeProvider>
     </QueryClientProvider>
